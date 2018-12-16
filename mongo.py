@@ -1,5 +1,6 @@
 # импортируем pymongo
 import pymongo
+import numpy as np
 
 # соединяемся с сервером базы данных 
 # (по умолчанию подключение осуществляется на localhost:27017)
@@ -14,13 +15,15 @@ db = conn.test
 
 # выбираем коллекцию документов
 coll = db.mycoll
-
+nympy_collection = db.numpy
 
 
 # осуществляем добавление документа в коллекцию,
 # который содержит поля name и surname - имя и фамилия
 doc = {"name": "Иван", "surname": "Иванов"}
 coll.save(doc)
+array = np.arange(1,10)
+nympy_collection.save(array)
 
 
 
@@ -34,6 +37,10 @@ coll.save(doc)
 
 def mongo_find(collection, find_string=None):
         return [item for item in collection.find({'name':"Tom"})]
+
+def mongo_add(array):
+    pass
+
 
 """
 # добавляем ко всем документам новое поле sex - пол
