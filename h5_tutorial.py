@@ -12,7 +12,6 @@ def data_save(dataset, power):
     # dset[1,1] = 99999
     data = np.linspace(0., 100.,  power, dtype='f8')
     dset = f.create_dataset(dataset, shape=(power,), maxshape=(None, ), dtype='f8')
-    # for i in range(10):
     for i in range(30):
         print(f'i={i}')
         dset[i*power:(i+1)*power] = data
