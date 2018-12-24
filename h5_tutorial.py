@@ -6,13 +6,13 @@ def data_save(dataset, power):
     # h5.svr - domain name
     # public - folder in h5ser/data
     # db - db.h5 in public folder
-    f = h5pyd.File("db.public.h5.svr", "a", endpoint="http://h5.svr:5000")
+    f = h5pyd.File("db2.public.h5.svr", "a", endpoint="http://h5.svr:5000")
     # this is the root group uuid
     # dset = f['default']
     # dset[1,1] = 99999
     data = np.linspace(0., 100.,  power, dtype='f8')
     dset = f.create_dataset(dataset, shape=(power,), maxshape=(None, ), dtype='f8')
-    for i in range(30):
+    for i in range(300):
         print(f'i={i}')
         dset[i*power:(i+1)*power] = data
         dset.resize(((i+2)*power,))
@@ -27,7 +27,7 @@ def data_read(dataset):
         f.keys(),
         f[dataset]
     )
-    print(f[dataset][:])
+    print(f[dataset][50:500])
 
     # g = f.create_group('Base_Group3')
     # print(g)
@@ -35,5 +35,5 @@ def data_read(dataset):
 
 
 if __name__ == '__main__':
-    # data_save('big_data30', 1024*1024)
-    data_read('big_data30')
+    data_save('big_data31', 1024*1024)
+    # data_read('big_data30')
